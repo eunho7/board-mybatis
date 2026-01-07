@@ -2,6 +2,31 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="Board">
+<mapper namespace="com.example.board.mapper.BoardMapper">
+    <insert id="save" parameterType="BoardDTO">
+        insert into board_table(
+            BOARD_TITLE,
+            BOARD_WRITER,
+            BOARD_PASS,
+            BOARD_CONTENTS
+        ) values (
+            #{boardTitle},
+            #{boardWriter},
+            #{boardPass},
+            #{boardContents}
+        )
+    </insert>
 
+    <select id="findAll" resultType="BoardDTO">
+        select
+            ID,
+            BOARD_TITLE,
+            BOARD_WRITER,
+            BOARD_PASS,
+            BOARD_CONTENTS,
+            BOARD_HITS,
+            CREATED_AT,
+            FILE_ATTACHED
+        from BOARD_TABLE ORDER BY ID;
+    </select>
 </mapper>

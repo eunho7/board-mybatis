@@ -6,11 +6,19 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db_codingrecipe?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: user_codingrecipe
-    password: 1234
+    url: jdbc:mysql://localhost:3306/doitsql?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: root
+    password: mysql
 
-# mybatis
 mybatis:
+  # XML 매퍼 위치
   mapper-locations: classpath:mapper/*.xml
-  config-location: classpath:mybatis-config.xml
+
+  # 별칭(Alias) 설정 (패키지 스캔)
+  type-aliases-package: com.example.board.dto
+
+  # 세부 설정 (Settings)
+  configuration:
+    map-underscore-to-camel-case: true # DB의 snake_case를 Java의 camelCase로 자동 매핑
+    default-fetch-size: 100
+    cache-enabled: true
