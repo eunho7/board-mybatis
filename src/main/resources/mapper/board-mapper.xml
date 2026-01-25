@@ -25,8 +25,32 @@
             BOARD_PASS,
             BOARD_CONTENTS,
             BOARD_HITS,
-            CREATED_AT,
+            DATE_FORMAT(CREATED_AT, "%Y-%m-%d") AS CREATED_AT,
             FILE_ATTACHED
         from BOARD_TABLE ORDER BY ID;
+    </select>
+
+    <select id="updateHits" parameterType="Long">
+        <![CDATA[
+            update BOARD_TABLE
+                set BOARD_HITS = BOARD_HITS + 1
+                where id = #{id}
+        ]]>
+    </select>
+
+    <select id="findById" parameterType="Long" resultType="BoardDTO">
+        <![CDATA[
+           select
+               ID,
+               BOARD_TITLE,
+               BOARD_WRITER,
+               BOARD_PASS,
+               BOARD_CONTENTS,
+               BOARD_HITS,
+               DATE_FORMAT(CREATED_AT, "%Y-%m-%d") AS CREATED_AT,
+               FILE_ATTACHED
+           from BOARD_TABLE
+           where id = #{id}
+        ]]>
     </select>
 </mapper>

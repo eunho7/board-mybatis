@@ -22,4 +22,13 @@ public class BoardService {
     public List<BoardDTO> findAll() {
         return boardMapper.findAll();
     }
+
+    public void updateHits(Long id) {
+        boardMapper.updateHits(id);
+    }
+
+    public BoardDTO findById(Long id) {
+        BoardDTO boardDTO = boardMapper.findById(id);
+        return boardDTO;
+    }
 }
